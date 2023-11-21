@@ -6,14 +6,14 @@
     <vendor email="755960141@qq.com" url="https://github.com/Zhiqiang-Wu">Wuzhiqiang</vendor>
 
     <description><![CDATA[
-    Enter short description for your plugin here.<br>
-    <em>most HTML tags may be used</em>
+    <p>Searching for variable names using <a href="https://github.com/unbug/codelf">codelf</a>.</p>
+    <p><a href="https://github.com/Zhiqiang-Wu/idea-codelf-plugin">Source code on GitHub.</a></p>
   ]]></description>
 
     <depends>com.intellij.modules.platform</depends>
 
     <extensions defaultExtensionNs="com.intellij">
-        <toolWindow factoryClass="wzq.codelf.plugin.SearchWindow" id="Codelf" anchor="right"/>
+        <!--<toolWindow factoryClass="wzq.codelf.plugin.SearchWindow" id="Codelf" anchor="right"/>-->
     </extensions>
 
     <actions>

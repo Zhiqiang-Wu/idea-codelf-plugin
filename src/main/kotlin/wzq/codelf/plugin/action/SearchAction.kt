@@ -1,9 +1,9 @@
 package wzq.codelf.plugin.action
 
+import com.intellij.ide.browsers.BrowserLauncher
 import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.actionSystem.CommonDataKeys
-import com.intellij.openapi.wm.ToolWindowManager
 
 /**
  * @author 吴志强
@@ -12,8 +12,7 @@ import com.intellij.openapi.wm.ToolWindowManager
 class SearchAction : AnAction() {
 
     override fun actionPerformed(e: AnActionEvent) {
-        val project = e.project ?: return
-        val selectedText = e.getData(CommonDataKeys.EDITOR)?.selectionModel?.selectedText
-        ToolWindowManager.getInstance(project).getToolWindow("Codelf")?.show();
+        val selectedText = e.getData(CommonDataKeys.EDITOR)?.selectionModel?.selectedText ?: ""
+        BrowserLauncher.instance.browse("https://unbug.github.io/codelf/#${selectedText}")
     }
 }
