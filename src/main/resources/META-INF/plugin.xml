@@ -13,6 +13,12 @@
     <depends>com.intellij.modules.platform</depends>
 
     <extensions defaultExtensionNs="com.intellij">
-
+        <toolWindow factoryClass="wzq.codelf.plugin.SearchWindow" id="Codelf" anchor="right"/>
     </extensions>
+
+    <actions>
+        <action class="wzq.codelf.plugin.action.SearchAction" text="Codelf">
+            <add-to-group group-id="EditorPopupMenu" anchor="first"/>
+        </action>
+    </actions>
 </idea-plugin>
