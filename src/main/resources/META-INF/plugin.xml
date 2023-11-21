@@ -1,0 +1,18 @@
+<idea-plugin>
+    <id>wzq.codelf.plugin</id>
+
+    <name>Codelf</name>
+
+    <vendor email="755960141@qq.com" url="https://github.com/Zhiqiang-Wu">Wuzhiqiang</vendor>
+
+    <description><![CDATA[
+    Enter short description for your plugin here.<br>
+    <em>most HTML tags may be used</em>
+  ]]></description>
+
+    <depends>com.intellij.modules.platform</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+
+    </extensions>
+</idea-plugin>
