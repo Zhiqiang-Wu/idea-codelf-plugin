@@ -17,7 +17,7 @@
     </extensions>
 
     <actions>
-        <action class="wzq.codelf.plugin.action.SearchAction" text="Codelf" icon="wzq.codelf.plugin.CodelfIcons.SEARCH">
+        <action class="wzq.codelf.plugin.action.SearchAction" text="Codelf">
             <add-to-group group-id="EditorPopupMenu" anchor="first"/>
         </action>
     </actions>

@@ -4,7 +4,7 @@ plugins {
     id("org.jetbrains.intellij") version "1.15.0"
 }
 
-group = "wzq"
+group = "wzq.codelf.plugin"
 version = "1.0.0"
 
 repositories {
