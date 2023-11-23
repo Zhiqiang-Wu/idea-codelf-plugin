@@ -4,6 +4,12 @@
 
 ![](https://img.shields.io/jetbrains/plugin/v/wzq.codelf.plugin) ![](https://img.shields.io/jetbrains/plugin/r/stars/wzq.codelf.plugin) ![](https://img.shields.io/jetbrains/plugin/d/wzq.codelf.plugin) ![](https://img.shields.io/github/actions/workflow/status/Zhiqiang-Wu/idea-codelf-plugin/publish.yml) ![](https://img.shields.io/github/license/Zhiqiang-Wu/idea-codelf-plugin)
 
+## Usage
+
+![](./docs/screenshot1.png)
+
+![](./docs/screenshot2.png)
+
 ## Language
 
 [![Kotlin](https://skillicons.dev/icons?i=kotlin)](https://kotlinlang.org)
@@ -15,3 +21,11 @@
 ## Related projects
 
 - [codelf](https://github.com/unbug/codelf)
+
+## Semver
+
+Plugin is following [Semantic Versioning 2.0.0](https://semver.org/)
+
+## License
+
+[MIT](./LICENSE)
