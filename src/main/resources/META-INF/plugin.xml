@@ -13,7 +13,8 @@
     <depends>com.intellij.modules.platform</depends>
 
     <extensions defaultExtensionNs="com.intellij">
-        <!--<toolWindow factoryClass="wzq.codelf.plugin.SearchWindow" id="Codelf" anchor="right"/>-->
+        <toolWindow factoryClass="wzq.codelf.plugin.SearchWindow" id="Codelf" anchor="right"
+                    icon="wzq.codelf.plugin.CodelfIcons.SEARCH"/>
     </extensions>
 
     <actions>

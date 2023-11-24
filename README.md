@@ -21,6 +21,7 @@
 ## Related projects
 
 - [codelf](https://github.com/unbug/codelf)
+- [searchcode](https://searchcode.com/)
 
 ## Semver
 
