@@ -12,8 +12,18 @@ import wzq.codelf.plugin.ui.SearchPanel
  */
 class SearchWindow : ToolWindowFactory {
 
+    private val searchPanel = SearchPanel {
+        this.onSearch(it)
+    }
+
     override fun createToolWindowContent(project: Project, toolWindow: ToolWindow) {
-        val content = ContentFactory.getInstance().createContent(SearchPanel(), "", false)
+        val content = ContentFactory.getInstance().createContent(this.searchPanel, "", false)
         toolWindow.contentManager.addContent(content)
+    }
+
+    private fun onSearch(text: String) {
+        if (text.isBlank()) {
+            return
+        }
     }
 }
