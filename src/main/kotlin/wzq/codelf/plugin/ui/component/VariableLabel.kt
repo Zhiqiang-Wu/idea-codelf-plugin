@@ -1,7 +1,7 @@
 package wzq.codelf.plugin.ui.component
 
 import com.intellij.ui.components.JBLabel
-import com.intellij.util.Alarm
+import com.intellij.util.AlarmFactory
 import wzq.codelf.plugin.Variable
 import java.awt.event.MouseEvent
 import java.awt.event.MouseListener
@@ -50,7 +50,7 @@ class VariableLabel(variable: Variable) : JBLabel(), MouseListener {
     }
 
     private companion object {
-        val showAlarm = lazy { Alarm() }
+        val showAlarm = lazy { AlarmFactory.getInstance().create() }
 
         val textTemplate = """
             <html>

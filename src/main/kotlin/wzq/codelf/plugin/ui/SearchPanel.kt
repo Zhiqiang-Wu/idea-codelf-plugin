@@ -1,5 +1,6 @@
 package wzq.codelf.plugin.ui
 
+import com.intellij.openapi.Disposable
 import com.intellij.ui.components.JBPanel
 import com.intellij.ui.components.JBScrollPane
 import wzq.codelf.plugin.Variable
@@ -11,7 +12,7 @@ import javax.swing.ScrollPaneConstants
  * @author 吴志强
  * @date 2023/11/24
  */
-class SearchPanel(onSearch: (text: String) -> Unit) : JBPanel<SearchPanel>() {
+class SearchPanel(onSearch: (text: String) -> Unit) : JBPanel<SearchPanel>(), Disposable {
 
     private var searchCenterPanel = SearchCenterPanel()
 
@@ -33,5 +34,8 @@ class SearchPanel(onSearch: (text: String) -> Unit) : JBPanel<SearchPanel>() {
 
     fun setContent(variables: Array<Variable>) {
         this.searchCenterPanel.setContent(variables)
+    }
+
+    override fun dispose() {
     }
 }

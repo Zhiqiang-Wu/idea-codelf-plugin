@@ -7,6 +7,8 @@ import com.intellij.openapi.project.Project
 import com.intellij.openapi.wm.ToolWindow
 import com.intellij.openapi.wm.ToolWindowFactory
 import com.intellij.ui.content.ContentFactory
+import com.intellij.util.Alarm
+import com.intellij.util.AlarmFactory
 import lombok.Cleanup
 import org.apache.http.HttpStatus
 import org.apache.http.client.methods.HttpGet
@@ -21,6 +23,10 @@ import java.nio.charset.StandardCharsets
  */
 class SearchWindow : ToolWindowFactory {
 
+    private val regex = """^(\-|\/)*""".toRegex()
+
+    private val regex2 = """(\-|\/)*${'$'}""".toRegex()
+
     private val objectMapper = lazy { ObjectMapper() }
 
     private val httpClient = lazy { HttpClients.createDefault() }
@@ -28,6 +34,11 @@ class SearchWindow : ToolWindowFactory {
     private val searchPanel = SearchPanel {
         this.onSearch(it)
     }
+
+    private val requestAlarm =
+        lazy { AlarmFactory.getInstance().create(Alarm.ThreadToUse.POOLED_THREAD, this.searchPanel) }
+
+    private val updateAlarm = lazy { AlarmFactory.getInstance().create() }
 
     override fun createToolWindowContent(project: Project, toolWindow: ToolWindow) {
         val content = ContentFactory.getInstance().createContent(this.searchPanel, "", false)
@@ -39,6 +50,19 @@ class SearchWindow : ToolWindowFactory {
             return
         }
 
+        requestAlarm.value.cancelAllRequests()
+        // 在专门的线程中请求
+        requestAlarm.value.addRequest({
+            this.listVariables(text)?.let {
+                // 在 UI 线程中更新
+                updateAlarm.value.addRequest({
+                    this.searchPanel.setContent(it)
+                }, 0)
+            }
+        }, 0)
+    }
+
+    private fun listVariables(text: String): Array<Variable>? {
         val q = text.trim()
 
         // TODO 分页，页大小
@@ -49,8 +73,7 @@ class SearchWindow : ToolWindowFactory {
         val response = this.httpClient.value.execute(httpGet)
         val statusLine = response.statusLine
         if (statusLine.statusCode != HttpStatus.SC_OK) {
-            println(statusLine.reasonPhrase)
-            return
+            return null
         }
 
         val responseStr: String = EntityUtils.toString(response.entity, StandardCharsets.UTF_8)
@@ -89,8 +112,7 @@ class SearchWindow : ToolWindowFactory {
 
                 keyWordRegex.findAll(lineJoin)
                     .map {
-                        // TODO 正则定义为常量
-                        it.value.replace("""^(\-|\/)*""".toRegex(), "").replace("""(\-|\/)*${'$'}""".toRegex(), "")
+                        it.value.replace(this.regex, "").replace(this.regex2, "")
                     }
                     .forEach l@{
                         // 限制长度
@@ -112,6 +134,6 @@ class SearchWindow : ToolWindowFactory {
                     }
             }
 
-        this.searchPanel.setContent(variableArr)
+        return variableArr
     }
 }
