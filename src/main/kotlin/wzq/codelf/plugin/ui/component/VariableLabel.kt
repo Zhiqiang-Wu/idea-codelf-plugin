@@ -47,15 +47,23 @@ class VariableLabel(variable: Variable) : JBLabel(), MouseListener {
     }
 
     override fun mouseExited(e: MouseEvent?) {
+        showAlarm.value.cancelAllRequests()
+        hideAlarm.value.addRequest({
+            if (!this.popupMenu.value.isFocus()) {
+                this.popupMenu.value.isVisible = false
+            }
+        }, 200)
     }
 
     private companion object {
         val showAlarm = lazy { AlarmFactory.getInstance().create() }
 
+        val hideAlarm = lazy { AlarmFactory.getInstance().create() }
+
         val textTemplate = """
             <html>
             <body>
-            <div style="font-size: 13px; display: inline-block; background-color: %s; padding: 5px; border-radius: 50px; color: white;">%s</div>
+            <div style="font-size: 13px; display: inline-block; background-color: %s; padding: 5px; color: white;">%s</div>
             </body>
             </html>
         """.trimIndent()

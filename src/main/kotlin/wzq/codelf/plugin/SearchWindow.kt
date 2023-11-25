@@ -65,8 +65,7 @@ class SearchWindow : ToolWindowFactory {
     private fun listVariables(text: String): Array<Variable>? {
         val q = text.trim()
 
-        // TODO 分页，页大小
-        val url = "https://searchcode.com/api/codesearch_I/?q=$q&p=0&per_page20"
+        val url = "https://searchcode.com/api/codesearch_I/?q=$q"
         val httpGet = HttpGet(url)
 
         @Cleanup

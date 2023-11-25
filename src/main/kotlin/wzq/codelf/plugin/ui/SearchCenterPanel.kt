@@ -21,5 +21,7 @@ class SearchCenterPanel : JBPanel<SearchCenterPanel>() {
         variables.forEach {
             this.add(VariableLabel(it))
         }
+        // 及时渲染
+        this.revalidate()
     }
 }
