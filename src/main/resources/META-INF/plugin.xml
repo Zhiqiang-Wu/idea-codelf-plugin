@@ -18,8 +18,18 @@
     </extensions>
 
     <actions>
-        <action class="wzq.codelf.plugin.action.SearchAction" text="Codelf" icon="wzq.codelf.plugin.CodelfIcons.SEARCH">
+        <action id="$SearchAction" class="wzq.codelf.plugin.action.SearchAction" text="Codelf"
+                icon="wzq.codelf.plugin.CodelfIcons.SEARCH"/>
+
+        <action id="$SearchInBrowserAction" class="wzq.codelf.plugin.action.SearchInBrowserAction"
+                text="Codelf in Browser" icon="wzq.codelf.plugin.CodelfIcons.SEARCH"/>
+
+        <group>
+            <separator/>
+            <reference ref="$SearchAction"/>
+            <reference ref="$SearchInBrowserAction"/>
+            <separator/>
             <add-to-group group-id="EditorPopupMenu" anchor="first"/>
-        </action>
+        </group>
     </actions>
 </idea-plugin>
