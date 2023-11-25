@@ -32,6 +32,11 @@ class VariablePopupMenu(variable: Variable) : JBPopupMenu(), MouseListener {
         }
         copyMenuItem.addMouseListener(this)
         this.add(copyMenuItem)
+
+        val languageMenuItem = JBMenuItem("[${variable.language}]")
+        languageMenuItem.addMouseListener(this)
+        languageMenuItem.isEnabled = false
+        this.add(languageMenuItem)
     }
 
     fun isFocus(): Boolean {
