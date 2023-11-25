@@ -40,12 +40,35 @@ class SearchCodeTest {
 
         val results: ArrayNode = responseBody.get("results") as ArrayNode
 
-        results.map {
-            val node = it as ObjectNode
+        println(results.toPrettyString())
+    }
 
-            val repo = node.get("repo").asText().replace("git://github.com", "https://github.com")
-            node.put("repo", repo)
-        }
+    @Test
+    fun replaceR() {
+        val str = "git://github.\rco\n\rm/1\n\n3132"
+        val replace = str.replace("\\R".toRegex(), " ")
+        println(replace)
+    }
+
+    @Test
+    fun regex() {
+        val q = "filter"
+        var line = """
+            {"198":"\t},","199":"\tfilter: function(callback, thisObject){","200":"\t\t// summary:","201":"\t\t//\t\tFilters the query results, based on","202":"\t\t//\t\thttps://developer.mozilla.org/en/Core_JavaScript_1.5_Reference/Objects/Array/filter.","29":"\t//\t\t| var query = store.queryEngine({foo:\"bar\"}, {count:10});","30":"\t//\t\t| query(someArray) -> filtered array","31":"\t//\t\tThe returned query function may have a \"matches\" property that can be"}
+        """.trimIndent()
+        line = line.replace("\\R".toRegex(), " ")
+        val regex = "([\\-_\\w\\d\\/\\$]*)?$q([\\-_\\w\\d\\$]*)?".toRegex()
+        val findAll = regex.findAll(line)
+        findAll
+            .map {
+                it.value
+            }
+            .map {
+                it.replace("""^(\-|\/)*""".toRegex(), "").replace("""(\-|\/)*${'$'}""".toRegex(), "")
+            }
+            .forEach {
+                println(it)
+            }
     }
 
     companion object {

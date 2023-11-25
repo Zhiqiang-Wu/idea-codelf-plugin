@@ -1,10 +1,13 @@
 package wzq.codelf.plugin.ui
 
+import com.intellij.openapi.ui.addKeyboardAction
 import com.intellij.ui.components.JBPanel
 import com.intellij.ui.components.JBTextField
+import java.awt.event.KeyEvent
 import javax.swing.Box
 import javax.swing.BoxLayout
 import javax.swing.JButton
+import javax.swing.KeyStroke
 
 /**
  * @author 吴志强
@@ -19,12 +22,15 @@ class SearchNorthPanel(onSearch: (text: String) -> Unit) : JBPanel<SearchNorthPa
         this.add(firstRow)
 
         val qTextField = JBTextField()
+        qTextField.addKeyboardAction(KeyStroke.getKeyStroke(KeyEvent.VK_ENTER.toChar())) {
+            onSearch(qTextField.text)
+        }
         firstRow.add(qTextField)
 
         val secondRow = Box.createHorizontalBox()
         this.add(secondRow)
 
-        // TODO
+        // TODO 国际化
         val searchButton = JButton("Search")
         searchButton.addActionListener {
             onSearch(qTextField.text)
@@ -36,6 +42,8 @@ class SearchNorthPanel(onSearch: (text: String) -> Unit) : JBPanel<SearchNorthPa
             qTextField.text = ""
         }
         secondRow.add(resetButton)
+
+        // TODO 语言筛选
 
         val secondRowPlaceholder = Box.createHorizontalGlue()
         secondRow.add(secondRowPlaceholder)
