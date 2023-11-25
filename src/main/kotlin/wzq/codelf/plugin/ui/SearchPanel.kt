@@ -50,6 +50,8 @@ class SearchPanel : JBPanel<SearchPanel>(), Disposable {
             ),
             BorderLayout.CENTER
         )
+
+        // TODO loading 效果
     }
 
     private fun onSearch(text: String) {
@@ -71,6 +73,8 @@ class SearchPanel : JBPanel<SearchPanel>(), Disposable {
 
     private fun listVariables(text: String): Array<Variable>? {
         val q = text.trim()
+
+        // TODO 翻译
 
         val url = "https://searchcode.com/api/codesearch_I/?q=$q"
         val httpGet = HttpGet(url)

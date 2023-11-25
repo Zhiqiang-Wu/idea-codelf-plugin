@@ -14,5 +14,6 @@ class SearchAction : AnAction() {
         val project = e.project ?: return
         val toolWindow = ToolWindowManager.getInstance(project).getToolWindow("Codelf")
         toolWindow?.show()
+        // TODO 打开 toolWindow 后直接根据选中值搜索
     }
 }

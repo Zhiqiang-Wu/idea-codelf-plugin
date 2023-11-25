@@ -6,7 +6,8 @@
     <vendor email="755960141@qq.com" url="https://github.com/Zhiqiang-Wu">Wuzhiqiang</vendor>
 
     <description><![CDATA[
-    <p>Searching for variable names using <a href="https://github.com/unbug/codelf">codelf</a>.</p>
+    <p>Search over GitHub, Bitbucket, GitLab to find real-world usage variable names.</p>
+    <p>The plugin references <a href="https://github.com/unbug/codelf">Codelf</a>.</p>
     <p><a href="https://github.com/Zhiqiang-Wu/idea-codelf-plugin">Source code on GitHub.</a></p>
   ]]></description>
 
