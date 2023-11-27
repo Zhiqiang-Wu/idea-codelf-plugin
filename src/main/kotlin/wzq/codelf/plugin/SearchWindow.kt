@@ -4,7 +4,6 @@ import com.intellij.openapi.project.Project
 import com.intellij.openapi.wm.ToolWindow
 import com.intellij.openapi.wm.ToolWindowFactory
 import com.intellij.ui.content.ContentFactory
-import wzq.codelf.plugin.ui.SearchPanel
 
 /**
  * @author 吴志强
@@ -13,7 +12,8 @@ import wzq.codelf.plugin.ui.SearchPanel
 class SearchWindow : ToolWindowFactory {
 
     override fun createToolWindowContent(project: Project, toolWindow: ToolWindow) {
-        val content = ContentFactory.getInstance().createContent(SearchPanel(), "", false)
+        val searchView = SearchView()
+        val content = ContentFactory.getInstance().createContent(searchView.getComponent(), "", false)
         toolWindow.contentManager.addContent(content)
     }
 }
