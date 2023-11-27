@@ -2,6 +2,7 @@ plugins {
     id("java")
     id("org.jetbrains.kotlin.jvm") version "1.9.0"
     id("org.jetbrains.intellij") version "1.15.0"
+    id("com.github.johnrengelman.shadow") version "8.1.1"
 }
 
 group = "wzq.codelf.plugin"
@@ -26,7 +27,9 @@ dependencies {
     compileOnly("org.projectlombok:lombok:1.18.30")
     annotationProcessor("org.projectlombok:lombok:1.18.30")
 
-    implementation("org.apache.xmlgraphics:batik-swing:1.17")
+    implementation("org.apache.xmlgraphics:batik-swing:1.17") {
+        exclude(group = "xml-apis", module = "xml-apis")
+    }
 
     testCompileOnly("org.projectlombok:lombok:1.18.30")
     testAnnotationProcessor("org.projectlombok:lombok:1.18.30")
