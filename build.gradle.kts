@@ -8,6 +8,10 @@ group = "wzq.codelf.plugin"
 version = "1.0.4"
 
 repositories {
+    maven {
+        url = uri("https://maven.aliyun.com/repository/public/")
+    }
+    mavenLocal()
     mavenCentral()
 }
 
@@ -21,6 +25,8 @@ intellij {
 dependencies {
     compileOnly("org.projectlombok:lombok:1.18.30")
     annotationProcessor("org.projectlombok:lombok:1.18.30")
+
+    implementation("org.apache.xmlgraphics:batik-swing:1.17")
 
     testCompileOnly("org.projectlombok:lombok:1.18.30")
     testAnnotationProcessor("org.projectlombok:lombok:1.18.30")
