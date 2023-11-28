@@ -11,4 +11,7 @@ object CodelfIcons {
 
     @JvmField
     val SEARCH: Icon = IconLoader.getIcon("/icons/search.svg", CodelfIcons::class.java)
+
+    @JvmField
+    val FILTER: Icon = IconLoader.getIcon("/icons/filter.svg", CodelfIcons::class.java)
 }

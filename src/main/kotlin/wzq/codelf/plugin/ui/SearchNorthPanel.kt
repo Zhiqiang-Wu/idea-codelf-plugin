@@ -3,6 +3,7 @@ package wzq.codelf.plugin.ui
 import com.intellij.openapi.ui.addKeyboardAction
 import com.intellij.ui.components.JBPanel
 import com.intellij.ui.components.JBTextField
+import wzq.codelf.plugin.CodelfIcons
 import java.awt.event.KeyEvent
 import javax.swing.Box
 import javax.swing.BoxLayout
@@ -20,6 +21,10 @@ class SearchNorthPanel(onSearch: (text: String) -> Unit) : JBPanel<SearchNorthPa
 
         val firstRow = Box.createHorizontalBox()
         this.add(firstRow)
+
+        val filterButton = JButton()
+        filterButton.icon = CodelfIcons.FILTER
+        firstRow.add(filterButton)
 
         val qTextField = JBTextField()
         qTextField.addKeyboardAction(KeyStroke.getKeyStroke(KeyEvent.VK_ENTER.toChar())) {
