@@ -21,8 +21,8 @@ import javax.swing.JComponent
  */
 class SearchView : Disposable {
 
-    private val searchPanel = SearchPanel {
-        this.onSearch(it)
+    private val searchPanel = SearchPanel { text, language ->
+        this.onSearch(text, language)
     }
 
     private val requestAlarm =
@@ -32,7 +32,7 @@ class SearchView : Disposable {
 
     private val httpClient = lazy { HttpClients.createDefault() }
 
-    private fun onSearch(text: String) {
+    private fun onSearch(text: String, languages: Set<Language>) {
         if (text.isBlank()) {
             return
         }
@@ -41,7 +41,7 @@ class SearchView : Disposable {
         requestAlarm.value.cancelAllRequests()
         // 在专门的线程中请求
         requestAlarm.value.addRequest({
-            val variables = this.listVariables(text)
+            val variables = this.listVariables(text, languages)
             if (variables != null) {
                 updateAlarm.value.addRequest({
                     this.searchPanel.setContent(variables)
@@ -55,12 +55,22 @@ class SearchView : Disposable {
         }, 0)
     }
 
-    private fun listVariables(text: String): Array<Variable>? {
+    private fun listVariables(text: String, languages: Set<Language>): Array<Variable>? {
         val q = text.trim()
 
         // TODO 翻译
 
-        val url = "https://searchcode.com/api/codesearch_I/?q=$q"
+        var url = "https://searchcode.com/api/codesearch_I/?q=$q"
+        if (languages.isNotEmpty()) {
+            val lanString = languages
+                .map {
+                    it.value
+                }
+                .joinToString("&") {
+                    "lan=${it}"
+                }
+            url = "${url}&${lanString}"
+        }
         val httpGet = HttpGet(url)
 
         @Cleanup

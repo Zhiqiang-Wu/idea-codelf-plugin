@@ -1,6 +1,7 @@
 package wzq.codelf.plugin.ui
 
 import com.intellij.ui.components.JBPanel
+import wzq.codelf.plugin.Language
 import wzq.codelf.plugin.Variable
 import java.awt.BorderLayout
 import javax.swing.BorderFactory
@@ -9,7 +10,7 @@ import javax.swing.BorderFactory
  * @author 吴志强
  * @date 2023/11/24
  */
-class SearchPanel(onSearch: (text: String) -> Unit) : JBPanel<SearchPanel>() {
+class SearchPanel(onSearch: (text: String, languages: Set<Language>) -> Unit) : JBPanel<SearchPanel>() {
 
     private val searchCenterPanel = SearchCenterPanel()
 
