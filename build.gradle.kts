@@ -2,11 +2,10 @@ plugins {
     id("java")
     id("org.jetbrains.kotlin.jvm") version "1.9.0"
     id("org.jetbrains.intellij") version "1.15.0"
-    id("com.github.johnrengelman.shadow") version "8.1.1"
 }
 
 group = "wzq.codelf.plugin"
-version = "1.0.5"
+version = "1.0.6"
 
 repositories {
     maven {
@@ -29,6 +28,8 @@ dependencies {
 
     implementation("org.apache.xmlgraphics:batik-swing:1.17") {
         exclude(group = "xml-apis", module = "xml-apis")
+        exclude(group = "commons-logging", module = "commons-logging")
+        exclude(group = "commons-io", module = "commons-io")
     }
 
     testCompileOnly("org.projectlombok:lombok:1.18.30")
