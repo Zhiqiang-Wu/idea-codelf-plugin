@@ -5,7 +5,6 @@ import com.fasterxml.jackson.databind.node.ArrayNode
 import com.fasterxml.jackson.databind.node.ObjectNode
 import com.intellij.openapi.Disposable
 import com.intellij.util.Alarm
-import com.intellij.util.AlarmFactory
 import lombok.Cleanup
 import org.apache.http.HttpStatus
 import org.apache.http.client.methods.HttpGet
@@ -25,10 +24,9 @@ class SearchView : Disposable {
         this.onSearch(text, language)
     }
 
-    private val requestAlarm =
-        lazy { AlarmFactory.getInstance().create(Alarm.ThreadToUse.POOLED_THREAD, this) }
+    private val requestAlarm = lazy { Alarm(Alarm.ThreadToUse.POOLED_THREAD, this) }
 
-    private val updateAlarm = lazy { AlarmFactory.getInstance().create() }
+    private val updateAlarm = lazy { Alarm() }
 
     private val httpClient = lazy { HttpClients.createDefault() }
 

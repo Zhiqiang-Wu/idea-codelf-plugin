@@ -25,7 +25,7 @@
         <action id="$SearchInBrowserAction" class="wzq.codelf.plugin.action.SearchInBrowserAction"
                 text="Codelf in Browser" icon="wzq.codelf.plugin.CodelfIcons.SEARCH"/>
 
-        <group>
+        <group id="$SearchActionGroup">
             <separator/>
             <reference ref="$SearchAction"/>
             <reference ref="$SearchInBrowserAction"/>
