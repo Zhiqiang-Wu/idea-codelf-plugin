@@ -23,11 +23,11 @@ jobs:
             -   name: Build with Gradle
                 uses: gradle/gradle-build-action@v2
                 with:
-                    arguments: shadowJar
+                    arguments: buildPlugin
             -   name: Release
                 uses: softprops/action-gh-release@v1
                 if: startsWith(github.ref, 'refs/tags/')
                 with:
                     name: idea-codelf-plugin ${{ github.ref_name }}
-                    files: build/libs/idea-codelf-plugin-*-all.jar
+                    files: build/distributions/idea-codelf-plugin-*.zip
                     body_path: changelog/${{ github.ref_name }}.md
