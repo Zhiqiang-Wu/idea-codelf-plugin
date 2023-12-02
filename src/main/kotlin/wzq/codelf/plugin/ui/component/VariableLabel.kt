@@ -68,7 +68,6 @@ class VariableLabel(variable: Variable) : JBLabel(), MouseListener {
             </html>
         """.trimIndent()
 
-        // TODO 多加几个颜色
         val colorArr =
             arrayOf("red", "orange", "olive", "green", "teal", "blue", "purple")
     }

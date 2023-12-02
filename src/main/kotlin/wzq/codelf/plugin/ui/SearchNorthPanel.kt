@@ -3,6 +3,7 @@ package wzq.codelf.plugin.ui
 import com.intellij.openapi.ui.addKeyboardAction
 import com.intellij.ui.components.JBPanel
 import com.intellij.ui.components.JBTextField
+import wzq.codelf.plugin.CodelfBundle
 import wzq.codelf.plugin.CodelfIcons
 import wzq.codelf.plugin.Language
 import wzq.codelf.plugin.ui.component.JScrollPopupMenu
@@ -48,14 +49,13 @@ class SearchNorthPanel(onSearch: (text: String, languages: Set<Language>) -> Uni
         val secondRow = Box.createHorizontalBox()
         this.add(secondRow)
 
-        // TODO 国际化
-        val searchButton = JButton("Search")
+        val searchButton = JButton(CodelfBundle.getMessage("ui.panel.search.text"))
         searchButton.addActionListener {
             onSearch(qTextField.text, this.getSelectedLanguage())
         }
         secondRow.add(searchButton)
 
-        val resetButton = JButton("Reset")
+        val resetButton = JButton(CodelfBundle.getMessage("ui.panel.reset.text"))
         resetButton.addActionListener {
             qTextField.text = ""
             this.resetSelectedLanguage()
