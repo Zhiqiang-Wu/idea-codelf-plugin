@@ -1,17 +1,12 @@
 package wzq.codelf.plugin
 
-import com.fasterxml.jackson.databind.ObjectMapper
+import cn.hutool.http.HttpUtil
 import com.fasterxml.jackson.databind.node.ArrayNode
 import com.fasterxml.jackson.databind.node.ObjectNode
 import com.intellij.openapi.Disposable
 import com.intellij.util.Alarm
 import lombok.Cleanup
-import org.apache.http.HttpStatus
-import org.apache.http.client.methods.HttpGet
-import org.apache.http.impl.client.HttpClients
-import org.apache.http.util.EntityUtils
 import wzq.codelf.plugin.ui.SearchPanel
-import java.nio.charset.StandardCharsets
 import javax.swing.JComponent
 
 /**
@@ -27,8 +22,6 @@ class SearchView : Disposable {
     private val requestAlarm = lazy { Alarm(Alarm.ThreadToUse.POOLED_THREAD, this) }
 
     private val updateAlarm = lazy { Alarm() }
-
-    private val httpClient = lazy { HttpClients.createDefault() }
 
     private fun onSearch(text: String, languages: Set<Language>) {
         if (text.isBlank()) {
@@ -69,17 +62,14 @@ class SearchView : Disposable {
                 }
             url = "${url}&${lanString}"
         }
-        val httpGet = HttpGet(url)
 
         @Cleanup
-        val response = this.httpClient.value.execute(httpGet)
-        val statusLine = response.statusLine
-        if (statusLine.statusCode != HttpStatus.SC_OK) {
+        val response = HttpUtil.createGet(url).execute()
+        if (!response.isOk) {
             return null
         }
 
-        val responseStr: String = EntityUtils.toString(response.entity, StandardCharsets.UTF_8)
-        val responseBody: ObjectNode = objectMapper.value.readValue(responseStr, ObjectNode::class.java)
+        val responseBody: ObjectNode = Global.objectMapper.readValue(response.body(), ObjectNode::class.java)
 
         val results: ArrayNode = responseBody.get("results") as ArrayNode
 
@@ -150,7 +140,5 @@ class SearchView : Disposable {
         private val regex = """^(\-|\/)*""".toRegex()
 
         private val regex2 = """(\-|\/)*${'$'}""".toRegex()
-
-        private val objectMapper = lazy { ObjectMapper() }
     }
 }
