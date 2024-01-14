@@ -5,7 +5,7 @@ plugins {
 }
 
 group = "wzq.codelf.plugin"
-version = "1.0.6"
+version = "2.0.0"
 
 repositories {
     maven {
@@ -25,14 +25,6 @@ intellij {
 dependencies {
     compileOnly("org.projectlombok:lombok:1.18.30")
     annotationProcessor("org.projectlombok:lombok:1.18.30")
-
-    implementation("cn.hutool:hutool-http:5.8.23")
-
-    implementation("org.apache.xmlgraphics:batik-swing:1.17") {
-        exclude(group = "xml-apis", module = "xml-apis")
-        exclude(group = "commons-logging", module = "commons-logging")
-        exclude(group = "commons-io", module = "commons-io")
-    }
 
     testCompileOnly("org.projectlombok:lombok:1.18.30")
     testAnnotationProcessor("org.projectlombok:lombok:1.18.30")
