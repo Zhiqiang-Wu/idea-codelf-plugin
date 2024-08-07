@@ -1,11 +1,11 @@
 plugins {
     id("java")
-    id("org.jetbrains.kotlin.jvm") version "1.9.0"
-    id("org.jetbrains.intellij") version "1.15.0"
+    id("org.jetbrains.kotlin.jvm") version "1.9.24"
+    id("org.jetbrains.intellij") version "1.17.3"
 }
 
 group = "wzq.codelf.plugin"
-version = "1.0.6"
+version = "1.0.7"
 
 repositories {
     maven {
@@ -16,17 +16,17 @@ repositories {
 }
 
 intellij {
-    version.set("2023.2.5")
+    version.set("2024.2")
     type.set("IC")
 
     plugins.set(listOf(/* Plugin Dependencies */))
 }
 
 dependencies {
-    compileOnly("org.projectlombok:lombok:1.18.30")
-    annotationProcessor("org.projectlombok:lombok:1.18.30")
+    compileOnly("org.projectlombok:lombok:1.18.34")
+    annotationProcessor("org.projectlombok:lombok:1.18.34")
 
-    implementation("cn.hutool:hutool-http:5.8.23")
+    implementation("cn.hutool:hutool-http:5.8.29")
 
     implementation("org.apache.xmlgraphics:batik-swing:1.17") {
         exclude(group = "xml-apis", module = "xml-apis")
@@ -34,9 +34,9 @@ dependencies {
         exclude(group = "commons-io", module = "commons-io")
     }
 
-    testCompileOnly("org.projectlombok:lombok:1.18.30")
-    testAnnotationProcessor("org.projectlombok:lombok:1.18.30")
-    testImplementation(platform("org.junit:junit-bom:5.9.1"))
+    testCompileOnly("org.projectlombok:lombok:1.18.34")
+    testAnnotationProcessor("org.projectlombok:lombok:1.18.34")
+    testImplementation(platform("org.junit:junit-bom:5.10.3"))
     testImplementation("org.junit.jupiter:junit-jupiter")
 }
 
@@ -55,7 +55,7 @@ tasks {
 
     patchPluginXml {
         sinceBuild.set("222")
-        untilBuild.set("233.*")
+        untilBuild.set("242.*")
     }
 
     signPlugin {
