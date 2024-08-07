@@ -24,7 +24,6 @@
 
 - [codelf](https://github.com/unbug/codelf)
 - [searchcode](https://searchcode.com/)
-- [idea-codelf-plugin-view](https://github.com/Zhiqiang-Wu/idea-codelf-plugin-view)
 
 ## Semver
 
