@@ -56,9 +56,9 @@ class VariableLabel(variable: Variable) : JBLabel(), MouseListener {
     }
 
     private companion object {
-        val showAlarm = lazy { Alarm() }
+        val showAlarm = lazy { Alarm(Alarm.ThreadToUse.SWING_THREAD) }
 
-        val hideAlarm = lazy { Alarm() }
+        val hideAlarm = lazy { Alarm(Alarm.ThreadToUse.SWING_THREAD) }
 
         val textTemplate = """
             <html>

@@ -21,7 +21,7 @@ class SearchView : Disposable {
 
     private val requestAlarm = lazy { Alarm(Alarm.ThreadToUse.POOLED_THREAD, this) }
 
-    private val updateAlarm = lazy { Alarm() }
+    private val updateAlarm = lazy { Alarm(Alarm.ThreadToUse.SWING_THREAD) }
 
     private fun onSearch(text: String, languages: Set<Language>) {
         if (text.isBlank()) {
