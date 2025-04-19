@@ -28,5 +28,5 @@ jobs:
                 uses: softprops/action-gh-release@v2
                 if: github.ref_type == 'tag'
                 with:
-                    name: idea-codelf-plugin ${{ github.ref_name }}
+                    name: ${{ github.ref_name }}
                     files: build/distributions/idea-codelf-plugin-*.zip
