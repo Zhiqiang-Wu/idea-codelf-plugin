@@ -1,10 +1,12 @@
 import com.diffplug.spotless.LineEnding
+import org.jetbrains.changelog.Changelog
 
 plugins {
     id("java")
     id("org.jetbrains.kotlin.jvm") version "1.9.25"
     id("org.jetbrains.intellij.platform") version "2.3.0"
     id("com.diffplug.spotless") version "7.0.2"
+    id("org.jetbrains.changelog") version "2.2.1"
 }
 
 group = "wzq.codelf.plugin"
@@ -22,24 +24,24 @@ repositories {
 
 dependencies {
     intellijPlatform {
-        create("IC", "251.23774.200")
+        create("IC", "2025.1")
         testFramework(org.jetbrains.intellij.platform.gradle.TestFrameworkType.Platform)
     }
 
-    compileOnly("org.projectlombok:lombok:1.18.34")
-    annotationProcessor("org.projectlombok:lombok:1.18.34")
+    compileOnly("org.projectlombok:lombok:1.18.38")
+    annotationProcessor("org.projectlombok:lombok:1.18.38")
 
     implementation("cn.hutool:hutool-http:5.8.29")
 
-    implementation("org.apache.xmlgraphics:batik-swing:1.17") {
+    implementation("org.apache.xmlgraphics:batik-swing:1.18") {
         exclude(group = "xml-apis", module = "xml-apis")
         exclude(group = "commons-logging", module = "commons-logging")
         exclude(group = "commons-io", module = "commons-io")
     }
 
-    testCompileOnly("org.projectlombok:lombok:1.18.34")
-    testAnnotationProcessor("org.projectlombok:lombok:1.18.34")
-    testImplementation(platform("org.junit:junit-bom:5.11.3"))
+    testCompileOnly("org.projectlombok:lombok:1.18.38")
+    testAnnotationProcessor("org.projectlombok:lombok:1.18.38")
+    testImplementation(platform("org.junit:junit-bom:5.12.2"))
     testImplementation("org.junit.jupiter:junit-jupiter")
 }
 
@@ -56,9 +58,9 @@ intellijPlatform {
             sinceBuild = "242"
         }
 
-        changeNotes = """
-      Initial version
-    """.trimIndent()
+        changeNotes = provider {
+            changelog.render(Changelog.OutputType.HTML)
+        }
     }
 
     pluginVerification {
