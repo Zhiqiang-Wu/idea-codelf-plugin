@@ -9,7 +9,7 @@ permissions:
     contents: write
 
 jobs:
-    publish:
+    release:
         runs-on: windows-latest
         steps:
             -   name: Checkout
