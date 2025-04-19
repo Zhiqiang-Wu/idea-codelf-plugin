@@ -9,7 +9,6 @@ import com.intellij.openapi.wm.ToolWindowManager
  * @date 2023/11/25
  */
 class SearchAction : AnAction() {
-
     override fun actionPerformed(e: AnActionEvent) {
         val project = e.project ?: return
         val toolWindow = ToolWindowManager.getInstance(project).getToolWindow("Codelf")

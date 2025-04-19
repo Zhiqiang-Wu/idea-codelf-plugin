@@ -10,8 +10,9 @@ import javax.swing.BorderFactory
  * @author 吴志强
  * @date 2023/11/24
  */
-class SearchPanel(onSearch: (text: String, languages: Set<Language>) -> Unit) : JBPanel<SearchPanel>() {
-
+class SearchPanel(
+    onSearch: (text: String, languages: Set<Language>) -> Unit,
+) : JBPanel<SearchPanel>() {
     private val searchCenterPanel = SearchCenterPanel()
 
     init {

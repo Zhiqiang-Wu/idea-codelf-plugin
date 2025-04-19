@@ -16,7 +16,6 @@ import java.nio.charset.StandardCharsets
  * @date 2023/11/23
  */
 class SearchCodeTest {
-
     @Test
     fun codeSearch() {
         val str = "https://searchcode.com/api/codesearch_I/?q=filter&p=0&per_page20"
@@ -53,25 +52,24 @@ class SearchCodeTest {
     @Test
     fun regex() {
         val q = "filter"
-        var line = """
+        var line =
+            """
             {"198":"\t},","199":"\tfilter: function(callback, thisObject){","200":"\t\t// summary:","201":"\t\t//\t\tFilters the query results, based on","202":"\t\t//\t\thttps://developer.mozilla.org/en/Core_JavaScript_1.5_Reference/Objects/Array/filter.","29":"\t//\t\t| var query = store.queryEngine({foo:\"bar\"}, {count:10});","30":"\t//\t\t| query(someArray) -> filtered array","31":"\t//\t\tThe returned query function may have a \"matches\" property that can be"}
-        """.trimIndent()
+            """.trimIndent()
         line = line.replace("\\R".toRegex(), " ")
         val regex = "([\\-_\\w\\d\\/\\$]*)?$q([\\-_\\w\\d\\$]*)?".toRegex()
         val findAll = regex.findAll(line)
         findAll
             .map {
                 it.value
-            }
-            .map {
+            }.map {
                 it.replace("""^(\-|\/)*""".toRegex(), "").replace("""(\-|\/)*${'$'}""".toRegex(), "")
-            }
-            .forEach {
+            }.forEach {
                 println(it)
             }
     }
 
     companion object {
-        val OBJECT_MAPPER = ObjectMapper();
+        val OBJECT_MAPPER = ObjectMapper()
     }
 }

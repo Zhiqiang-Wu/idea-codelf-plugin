@@ -8,7 +8,6 @@ import javax.swing.Icon
  * @date 2023/11/23
  */
 object CodelfIcons {
-
     @JvmField
     val SEARCH: Icon = IconLoader.getIcon("/icons/search.svg", CodelfIcons::class.java)
 

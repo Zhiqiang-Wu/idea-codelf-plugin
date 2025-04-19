@@ -10,8 +10,9 @@ import java.awt.GridBagLayout
  * @author 吴志强
  * @date 2023/11/27
  */
-class LoadingPanel(uri: String) : JBPanel<LoadingPanel>() {
-
+class LoadingPanel(
+    uri: String,
+) : JBPanel<LoadingPanel>() {
     private val svgCanvas = JSVGCanvas()
 
     init {
@@ -19,7 +20,7 @@ class LoadingPanel(uri: String) : JBPanel<LoadingPanel>() {
 
         this.layout = GridBagLayout()
 
-        val gbc = GridBagConstraints();
+        val gbc = GridBagConstraints()
         gbc.insets = JBUI.insets(5)
         gbc.gridx = 0
         gbc.gridy = 0

@@ -10,14 +10,15 @@ import com.intellij.openapi.project.DumbAware
  * @author 吴志强
  * @date 2023/11/21
  */
-class SearchInBrowserAction : AnAction(), DumbAware {
-
+class SearchInBrowserAction :
+    AnAction(),
+    DumbAware {
     init {
         isEnabledInModalContext = true
     }
 
     override fun actionPerformed(e: AnActionEvent) {
         val selectedText = e.getData(CommonDataKeys.EDITOR)?.selectionModel?.selectedText ?: ""
-        BrowserLauncher.instance.browse("https://unbug.github.io/codelf/#${selectedText}")
+        BrowserLauncher.instance.browse("https://unbug.github.io/codelf/#$selectedText")
     }
 }

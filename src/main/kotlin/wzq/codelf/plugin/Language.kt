@@ -9,8 +9,10 @@ import lombok.Getter
  */
 @Getter
 @AllArgsConstructor
-enum class Language(val value: Int, private val description: String) {
-
+enum class Language(
+    val value: Int,
+    private val description: String,
+) {
     JAVA(23, "Java"),
     JAVASCRIPT(22, "JavaScript"),
     C(28, "C"),
@@ -37,9 +39,8 @@ enum class Language(val value: Int, private val description: String) {
     BASH(41, "Bash"),
     LUA(54, "Lua"),
     QML(107, "QML"),
-    SHELL(31, "Shell");
+    SHELL(31, "Shell"),
+    ;
 
-    override fun toString(): String {
-        return this.description
-    }
+    override fun toString(): String = this.description
 }

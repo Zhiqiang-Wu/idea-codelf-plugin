@@ -18,8 +18,9 @@ import javax.swing.KeyStroke
  * @author 吴志强
  * @date 2023/11/24
  */
-class SearchNorthPanel(onSearch: (text: String, languages: Set<Language>) -> Unit) : JBPanel<SearchNorthPanel>() {
-
+class SearchNorthPanel(
+    onSearch: (text: String, languages: Set<Language>) -> Unit,
+) : JBPanel<SearchNorthPanel>() {
     private val languageFilterPopupMenu = JScrollPopupMenu()
 
     init {
@@ -74,14 +75,12 @@ class SearchNorthPanel(onSearch: (text: String, languages: Set<Language>) -> Uni
             }
     }
 
-    private fun getSelectedLanguage(): Set<Language> {
-        return this.languageFilterPopupMenu.components
+    private fun getSelectedLanguage(): Set<Language> =
+        this.languageFilterPopupMenu.components
             .filterIsInstance<LanguageCheckBox>()
             .filter {
                 it.isSelected
             }.map {
                 it.getLanguage()
-            }
-            .toSet()
-    }
+            }.toSet()
 }

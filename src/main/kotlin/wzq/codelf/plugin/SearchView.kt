@@ -14,16 +14,19 @@ import javax.swing.JComponent
  * @date 2023/11/27
  */
 class SearchView : Disposable {
-
-    private val searchPanel = SearchPanel { text, language ->
-        this.onSearch(text, language)
-    }
+    private val searchPanel =
+        SearchPanel { text, language ->
+            this.onSearch(text, language)
+        }
 
     private val requestAlarm = lazy { Alarm(Alarm.ThreadToUse.POOLED_THREAD, this) }
 
     private val updateAlarm = lazy { Alarm(Alarm.ThreadToUse.SWING_THREAD) }
 
-    private fun onSearch(text: String, languages: Set<Language>) {
+    private fun onSearch(
+        text: String,
+        languages: Set<Language>,
+    ) {
         if (text.isBlank()) {
             return
         }
@@ -46,21 +49,24 @@ class SearchView : Disposable {
         }, 0)
     }
 
-    private fun listVariables(text: String, languages: Set<Language>): Array<Variable>? {
+    private fun listVariables(
+        text: String,
+        languages: Set<Language>,
+    ): Array<Variable>? {
         val q = text.trim()
 
         // TODO 翻译
 
         var url = "https://searchcode.com/api/codesearch_I/?q=$q"
         if (languages.isNotEmpty()) {
-            val lanString = languages
-                .map {
-                    it.value
-                }
-                .joinToString("&") {
-                    "lan=${it}"
-                }
-            url = "${url}&${lanString}"
+            val lanString =
+                languages
+                    .map {
+                        it.value
+                    }.joinToString("&") {
+                        "lan=$it"
+                    }
+            url = "$url&$lanString"
         }
 
         @Cleanup
@@ -85,8 +91,7 @@ class SearchView : Disposable {
                 val repo = node.get("repo").asText().replace("git://github.com", "https://github.com")
                 node.put("repo", repo)
                 node
-            }
-            .forEach {
+            }.forEach {
                 val repo = it.get("repo").asText()
                 val language = it.get("language").asText()
 
@@ -102,11 +107,11 @@ class SearchView : Disposable {
                 // 去除换行符
                 val lineJoin = lineList.joinToString("").replace("\\R".toRegex(), " ")
 
-                keyWordRegex.findAll(lineJoin)
+                keyWordRegex
+                    .findAll(lineJoin)
                     .map {
                         it.value.replace(regex, "").replace(regex2, "")
-                    }
-                    .forEach l@{
+                    }.forEach l@{
                         // 限制长度
                         if (it.length > 63) {
                             return@l
@@ -129,9 +134,7 @@ class SearchView : Disposable {
         return variableArr
     }
 
-    fun getComponent(): JComponent {
-        return this.searchPanel
-    }
+    fun getComponent(): JComponent = this.searchPanel
 
     override fun dispose() {
     }

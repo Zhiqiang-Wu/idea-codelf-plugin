@@ -11,8 +11,10 @@ import javax.swing.JScrollBar
  * https://stackoverflow.com/questions/9288350/adding-vertical-scroll-to-a-jpopupmenu
  */
 class ScrollPopupMenuLayout : LayoutManager {
-
-    override fun addLayoutComponent(name: String?, comp: Component?) {
+    override fun addLayoutComponent(
+        name: String?,
+        comp: Component?,
+    ) {
     }
 
     override fun removeLayoutComponent(comp: Component?) {

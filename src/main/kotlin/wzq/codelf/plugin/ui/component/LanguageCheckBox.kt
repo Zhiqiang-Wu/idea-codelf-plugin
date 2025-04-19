@@ -7,9 +7,8 @@ import wzq.codelf.plugin.Language
  * @author 吴志强
  * @date 2023/11/28
  */
-class LanguageCheckBox(private val language: Language) : JBCheckBox(language.toString()) {
-
-    fun getLanguage(): Language {
-        return this.language
-    }
+class LanguageCheckBox(
+    private val language: Language,
+) : JBCheckBox(language.toString()) {
+    fun getLanguage(): Language = this.language
 }

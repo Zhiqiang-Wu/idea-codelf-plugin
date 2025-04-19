@@ -10,8 +10,10 @@ import java.awt.event.MouseListener
  * @author 吴志强
  * @date 2023/11/24
  */
-class VariableLabel(variable: Variable) : JBLabel(), MouseListener {
-
+class VariableLabel(
+    variable: Variable,
+) : JBLabel(),
+    MouseListener {
     private val popupMenu = lazy { VariablePopupMenu(variable) }
 
     // TODO 圆角
@@ -40,7 +42,7 @@ class VariableLabel(variable: Variable) : JBLabel(), MouseListener {
                 this.popupMenu.value.show(
                     it.component.parent,
                     it.component.x,
-                    it.component.y + it.component.height + 5
+                    it.component.y + it.component.height + 5,
                 )
             }, 400)
         }
@@ -60,13 +62,14 @@ class VariableLabel(variable: Variable) : JBLabel(), MouseListener {
 
         val hideAlarm = lazy { Alarm(Alarm.ThreadToUse.SWING_THREAD) }
 
-        val textTemplate = """
+        val textTemplate =
+            """
             <html>
             <body>
             <div style="font-size: 13px; display: inline-block; background-color: %s; padding: 5px; color: white;">%s</div>
             </body>
             </html>
-        """.trimIndent()
+            """.trimIndent()
 
         val colorArr =
             arrayOf("red", "orange", "olive", "green", "teal", "blue", "purple")

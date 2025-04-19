@@ -10,8 +10,10 @@ import com.intellij.ui.content.ContentFactory
  * @date 2023/11/21
  */
 class SearchWindow : ToolWindowFactory {
-
-    override fun createToolWindowContent(project: Project, toolWindow: ToolWindow) {
+    override fun createToolWindowContent(
+        project: Project,
+        toolWindow: ToolWindow,
+    ) {
         val searchView = SearchView()
         val content = ContentFactory.getInstance().createContent(searchView.getComponent(), "", false)
         toolWindow.contentManager.addContent(content)

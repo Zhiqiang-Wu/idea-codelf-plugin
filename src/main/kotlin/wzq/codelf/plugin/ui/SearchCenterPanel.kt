@@ -14,20 +14,24 @@ import javax.swing.ScrollPaneConstants
  * @date 2023/11/24
  */
 class SearchCenterPanel : JBPanel<SearchCenterPanel>() {
-
     private val contentPanel = ContentPanel()
 
     init {
         this.layout = CardLayout()
 
-        val scrollPane = JBScrollPane(
-            this.contentPanel,
-            ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED,
-            ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER
-        )
+        val scrollPane =
+            JBScrollPane(
+                this.contentPanel,
+                ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED,
+                ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER,
+            )
         this.add(scrollPane, "content")
 
-        val uri = this.javaClass.getResource("/icons/loading.svg")?.toURI().toString()
+        val uri =
+            this.javaClass
+                .getResource("/icons/loading.svg")
+                ?.toURI()
+                .toString()
         val loadingPanel = LoadingPanel(uri)
         this.add(loadingPanel, "loading")
     }
@@ -45,8 +49,7 @@ class SearchCenterPanel : JBPanel<SearchCenterPanel>() {
         this.contentPanel.setContent(variables)
     }
 
-    class ContentPanel: JBPanel<ContentPanel>() {
-
+    class ContentPanel : JBPanel<ContentPanel>() {
         init {
             this.layout = ModifiedFlowLayout(FlowLayout.LEFT)
         }

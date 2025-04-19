@@ -7,6 +7,5 @@ import com.fasterxml.jackson.databind.ObjectMapper
  * @date2023/12/2
  */
 object Global {
-
     val objectMapper = ObjectMapper()
 }

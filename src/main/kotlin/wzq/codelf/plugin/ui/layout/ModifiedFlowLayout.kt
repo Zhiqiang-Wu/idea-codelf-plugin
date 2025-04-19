@@ -8,15 +8,12 @@ import java.awt.FlowLayout
 /**
  * https://stackoverflow.com/questions/3679886/how-can-i-let-jtoolbars-wrap-to-the-next-line-flowlayout-without-them-being-hi
  */
-class ModifiedFlowLayout(align: Int) : FlowLayout(align) {
+class ModifiedFlowLayout(
+    align: Int,
+) : FlowLayout(align) {
+    override fun minimumLayoutSize(target: Container?): Dimension = this.computeMinSize(target)
 
-    override fun minimumLayoutSize(target: Container?): Dimension {
-        return this.computeMinSize(target)
-    }
-
-    override fun preferredLayoutSize(target: Container?): Dimension {
-        return this.computeSize(target)
-    }
+    override fun preferredLayoutSize(target: Container?): Dimension = this.computeSize(target)
 
     private fun computeMinSize(target: Container?): Dimension {
         target?.treeLock?.let {

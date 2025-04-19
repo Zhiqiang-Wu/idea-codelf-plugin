@@ -11,8 +11,9 @@ import javax.swing.JScrollBar
 /**
  * https://stackoverflow.com/questions/9288350/adding-vertical-scroll-to-a-jpopupmenu
  */
-open class JScrollPopupMenu(private var maximumVisibleRows: Int) : JPopupMenu() {
-
+open class JScrollPopupMenu(
+    private var maximumVisibleRows: Int,
+) : JPopupMenu() {
     private val popupScrollBar = JScrollBar(JScrollBar.VERTICAL)
 
     constructor() : this(10)
@@ -28,15 +29,16 @@ open class JScrollPopupMenu(private var maximumVisibleRows: Int) : JPopupMenu() 
         this.add(this.popupScrollBar)
 
         this.addMouseWheelListener {
-            val amount = if (it.scrollType == MouseWheelEvent.WHEEL_UNIT_SCROLL) {
-                it.unitsToScroll * this.popupScrollBar.unitIncrement
-            } else {
-                if (it.wheelRotation < 0) {
-                    -this.popupScrollBar.blockIncrement
+            val amount =
+                if (it.scrollType == MouseWheelEvent.WHEEL_UNIT_SCROLL) {
+                    it.unitsToScroll * this.popupScrollBar.unitIncrement
                 } else {
-                    this.popupScrollBar.blockIncrement
+                    if (it.wheelRotation < 0) {
+                        -this.popupScrollBar.blockIncrement
+                    } else {
+                        this.popupScrollBar.blockIncrement
+                    }
                 }
-            }
             this.popupScrollBar.value += amount
             it.consume()
         }
@@ -47,7 +49,11 @@ open class JScrollPopupMenu(private var maximumVisibleRows: Int) : JPopupMenu() 
         super.paintChildren(g)
     }
 
-    override fun addImpl(comp: Component?, constraints: Any?, index: Int) {
+    override fun addImpl(
+        comp: Component?,
+        constraints: Any?,
+        index: Int,
+    ) {
         super.addImpl(comp, constraints, index)
         if (this.maximumVisibleRows < this.componentCount - 1) {
             this.popupScrollBar.isVisible = true
@@ -62,7 +68,11 @@ open class JScrollPopupMenu(private var maximumVisibleRows: Int) : JPopupMenu() 
         }
     }
 
-    override fun show(invoker: Component?, x: Int, y: Int) {
+    override fun show(
+        invoker: Component?,
+        x: Int,
+        y: Int,
+    ) {
         if (this.popupScrollBar.isVisible) {
             var extent = 0
             var max = 0

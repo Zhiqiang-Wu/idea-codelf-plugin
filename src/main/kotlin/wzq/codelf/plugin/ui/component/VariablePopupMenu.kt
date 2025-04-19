@@ -14,8 +14,10 @@ import java.awt.event.MouseListener
  * @author 吴志强
  * @date 2023/11/25
  */
-class VariablePopupMenu(variable: Variable) : JBPopupMenu(), MouseListener {
-
+class VariablePopupMenu(
+    variable: Variable,
+) : JBPopupMenu(),
+    MouseListener {
     private var focus = false
 
     init {
@@ -40,9 +42,7 @@ class VariablePopupMenu(variable: Variable) : JBPopupMenu(), MouseListener {
         this.add(languageMenuItem)
     }
 
-    fun isFocus(): Boolean {
-        return this.focus
-    }
+    fun isFocus(): Boolean = this.focus
 
     override fun setVisible(b: Boolean) {
         if (!b) {
