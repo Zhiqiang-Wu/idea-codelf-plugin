@@ -10,7 +10,7 @@ plugins {
 }
 
 group = "wzq.codelf.plugin"
-version = "1.0.8"
+version = "1.0.9"
 
 repositories {
     maven {
